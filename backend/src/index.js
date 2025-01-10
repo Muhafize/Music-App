@@ -22,7 +22,7 @@ dotenv.config();
 
 const __dirname = path.resolve();
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 5000;
 
 const httpServer = createServer(app);
 initializeSocket(httpServer);
@@ -57,11 +57,9 @@ cron.schedule("0 * * * *", () => {
             for (const file of files) {
                 fs.unlink(path.join(tempDir, file), (err) => { });
             }
-
         });
     }
-
-})
+});
 
 app.use("/api/users", userRoutes);
 app.use("/api/admin", adminRoutes);
@@ -71,7 +69,7 @@ app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
 
 if (process.env.NODE_ENV === "production") {
-    app.use(express.static(path.join(__dirname, "../frontend/dist")))
+    app.use(express.static(path.join(__dirname, "../frontend/dist")));
     app.get("*", (req, res) => {
         res.sendFile(path.resolve(__dirname, "../frontend", "dist", "index.html"));
     });
