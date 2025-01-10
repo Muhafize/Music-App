@@ -22,7 +22,7 @@ dotenv.config();
 
 const __dirname = path.resolve();
 const app = express();
-const PORT = process.env.PORT || 5001; // Change the port to 5001
+const PORT = process.env.PORT || 5000;
 
 const httpServer = createServer(app);
 initializeSocket(httpServer);
@@ -67,6 +67,11 @@ app.use("/api/auth", authRoutes);
 app.use("/api/songs", songRoutes);
 app.use("/api/albums", albumRoutes);
 app.use("/api/stats", statRoutes);
+
+// Define a route handler for the root route
+app.get("/", (req, res) => {
+    res.send("Welcome to the Spotify Clone API");
+});
 
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/dist")));
