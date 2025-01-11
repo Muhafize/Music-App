@@ -88,7 +88,7 @@ Backend API: http://localhost:5000
 License
 This project is open-source and available under the MIT License.
 
-Developed by Muhafiz Ahmed Spray
+Developed by Muhafiz Ahmed 
 
 Portfolio
 Email
